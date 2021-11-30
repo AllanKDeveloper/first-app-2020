@@ -1,13 +1,10 @@
-import styled from "styled-components";
-import { darken } from "polished";
-
-export const ProductList = styled.ul`
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
   grid-gap: 1.25rem;
   list-style: none;
 
-  li {
+  .grid__line {
     display: flex;
     flex-direction: column;
     background: #fff;
@@ -15,26 +12,26 @@ export const ProductList = styled.ul`
     padding: 1.25rem;
     text-align: center;
 
-    img {
+    .grid__image {
       align-self: center;
       max-width: 15.625rem;
     }
 
-    > strong {
+    .grid__text--strong {
       font-size: 1rem;
       line-height: 1.25rem;
       color: #333;
       margin: 0.313rem 0 0.313rem;
     }
 
-    > p {
+    .grid__date {
       font-size: 0.75rem;
       margin-top: 0.313rem;
       color: #333;
       font-style: italic;
     }
 
-    button {
+    .grid__button {
       background: rgb(248, 151, 29);
       color: #fff;
       border: 0;
@@ -47,7 +44,7 @@ export const ProductList = styled.ul`
       transition: background 0.2s;
 
       &:hover {
-        background: ${darken(0.06, "rgb(255, 189, 67)")};
+        background: darken(rgb(255, 189, 67), 0.06);
       }
 
       div {
@@ -68,4 +65,4 @@ export const ProductList = styled.ul`
       }
     }
   }
-`;
+}

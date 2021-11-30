@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { useCartShopping } from "../../hooks/useCartShopping";
 import { Event } from "../../types";
 
-import { Container, ProductTable } from "./styles";
+import "./styles.less";
 
 import f1 from "../../assets/images/f1.jpg";
 
@@ -58,28 +58,35 @@ const Cart = (): JSX.Element => {
   }
 
   return (
-    <Container>
-      <ProductTable>
+    <div className="container">
+      <table className="container__table">
         <thead>
           <tr>
-            <th aria-label="product image" />
-            <th>PRODUCT</th>
-            <th>QTD</th>
-            <th aria-label="delete icon" />
+            <th className="table__head__th" aria-label="product image" />
+            <th className="table__head__th">PRODUCT</th>
+            <th className="table__head__th">QTD</th>
+            <th className="table__head__th" aria-label="delete icon" />
           </tr>
         </thead>
         <tbody>
           {cartFormatted?.map((event) => (
             <tr data-testid="event" key={event.race_no}>
-              <td>
-                <img src={f1} alt={event.track} />
+              <td className="table__body__td">
+                <img
+                  className="table__body__image"
+                  src={f1}
+                  alt={event.track}
+                />
               </td>
-              <td>
-                <strong>{event.track}</strong>
+              <td className="table__body__td">
+                <strong className="table__body__text--strong">
+                  {event.track}
+                </strong>
               </td>
-              <td>
-                <div>
+              <td className="table__body__td">
+                <div className="table__body__form">
                   <button
+                    className="table__body__button"
                     type="button"
                     data-testid="decrement-event"
                     disabled={event.amount <= 1}
@@ -88,12 +95,14 @@ const Cart = (): JSX.Element => {
                     <MdRemoveCircleOutline size={20} />
                   </button>
                   <input
+                    className="table__body__form__input"
                     type="text"
                     data-testid="event-amount"
                     readOnly
                     value={event.amount}
                   />
                   <button
+                    className="table__body__button"
                     type="button"
                     data-testid="increment-event"
                     onClick={() => handleEventIncrement(event)}
@@ -102,8 +111,9 @@ const Cart = (): JSX.Element => {
                   </button>
                 </div>
               </td>
-              <td>
+              <td className="container__table_body--td">
                 <button
+                  className="table__body__button"
                   type="button"
                   data-testid="remove-event"
                   onClick={() => handleRemoveEvent(event.race_no)}
@@ -114,17 +124,23 @@ const Cart = (): JSX.Element => {
             </tr>
           ))}
         </tbody>
-      </ProductTable>
-      {cartFormatted.length === 0 && <span>No events added to cart.</span>}
+      </table>
+      {cartFormatted.length === 0 && (
+        <span className="table__body__text">No events added to cart.</span>
+      )}
 
-      <footer>
+      <footer className="container__footer">
         {cartFormatted.length > 0 && (
-          <button type="button" onClick={() => handleFinalizeOrder()}>
+          <button
+            className="container__footer__button"
+            type="button"
+            onClick={() => handleFinalizeOrder()}
+          >
             Finalize order
           </button>
         )}
       </footer>
-    </Container>
+    </div>
   );
 };
 
